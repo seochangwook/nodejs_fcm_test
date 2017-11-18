@@ -15,6 +15,9 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 })); 
 
+//badge count//
+var badgecount = 0;
+
 //POST방식//
 router.post('/sendmsg', function(request, response){
     console.log('fcm push send...');
@@ -37,7 +40,8 @@ function pushmsg(pushmessage, response)
                 },
                 notification: {
                     title: 'Node.js pushtest',
-                    body: pushmessage
+                    body: pushmessage,
+                    badge : ++badgecount
                 }
             };
 
