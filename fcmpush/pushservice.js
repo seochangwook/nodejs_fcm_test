@@ -31,7 +31,8 @@ function pushmsg(pushmessage, response)
     async.waterfall([
         //메세지 생성//
         function(callback){ //첫 시작은 하나의 callback으로 시작한다.//
-
+            //deoClBWeTw4:APA91bF6sObWk6_xD-086Nvn5oU2VgwmOYyYwpK_PHV7kIFn52i9KREaAngO4h4Xn0O4M4TgTI5hVp1ruPWaHzg7qzf-wLj9Mm6mZIYq5yERIhxTRoAK_aCQ3BsxGMI211t2ya4Obsqa//
+            //다른 디바이스 토큰//
             var message = {
                 to: 'eEcp1TKnBl0:APA91bEPreKP7tZAjB1JWLlXNl2tOZZpEq4xWCW8MN18WF8ortzB0KbSXc6nqkWDmGaD7kT35frRpRbc--X6K5-HwLUo3r4AYXV6CgxCORMsqz3MIW2y9oNxFSQQCnhSigiTvCD4KsDM', // required fill with device token or topics
                 collapse_key: 'testpush', 

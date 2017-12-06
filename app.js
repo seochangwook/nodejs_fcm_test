@@ -15,6 +15,9 @@ app.use('/user', userservice_router);
 var fcmpushservice_router = require('./fcmpush/pushservice');
 app.use('/push', fcmpushservice_router);
 
+var fileuploadservice_router = require('./fileupload/fileuploadtest');
+app.use('/upload', fileuploadservice_router);
+
 app.listen(3000, function(){
     console.log('connected');
 });
