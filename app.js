@@ -18,6 +18,9 @@ app.use('/push', fcmpushservice_router);
 var fileuploadservice_router = require('./fileupload/fileuploadtest');
 app.use('/upload', fileuploadservice_router);
 
+var redissession_router = require('./redisdb/redisdbtest');
+app.use('/redis', redissession_router);
+
 app.listen(3000, function(){
     console.log('connected');
 });
