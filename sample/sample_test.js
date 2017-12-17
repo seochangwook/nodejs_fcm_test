@@ -1,5 +1,6 @@
 var express = require('/usr/local/lib/node_modules/express');
 var bodyParser = require('/usr/local/lib/node_modules/body-parser');
+var session = require('/usr/local/lib/node_modules/express-session');
 
 //라우터별로 분리하기 위해 express의 라우터 기능 사용//
 var router = express.Router();
@@ -13,6 +14,8 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //GET방식//
 router.get('/endpoint_get', function(request, response){
     var id = request.query.id;
+
+    console.log('session key value: ' + request.session.key);
 
     response.send('id(get): '+id);
 });

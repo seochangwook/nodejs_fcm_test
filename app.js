@@ -1,6 +1,23 @@
 var express = require('/usr/local/lib/node_modules/express');
+var redis   = require("/usr/local/lib/node_modules/redis");
+var session = require('/usr/local/lib/node_modules/express-session');
+var redisStore = require('/usr/local/lib/node_modules/connect-redis')(session);
 
 var app = express();
+
+//redis 세션관리//
+var client  = redis.createClient(6379, 'localhost');
+
+app.use(session({
+    secret : 'seo',
+    //Redis서버의 설정정보//
+    store : new redisStore({
+        client : client,
+        ttl : 260
+    }),
+    saveUninitialized : false,
+    resave : false
+}));
 
 //Resource//
 //파일들이 있는 디렉터리(정적파일)를 사용하기 위해서 설정//

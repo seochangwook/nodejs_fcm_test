@@ -1,25 +1,9 @@
 var express = require('/usr/local/lib/node_modules/express');
 var bodyParser = require('/usr/local/lib/node_modules/body-parser');
-var redis   = require("/usr/local/lib/node_modules/redis");
 var session = require('/usr/local/lib/node_modules/express-session');
-var redisStore = require('/usr/local/lib/node_modules/connect-redis')(session);
 
 //라우터별로 분리하기 위해 express의 라우터 기능 사용//
 var router = express.Router();
-
-//redis 세션관리//
-var client  = redis.createClient(6379, 'localhost');
-
-router.use(session({
-    secret : 'seo',
-    //Redis서버의 설정정보//
-    store : new redisStore({
-        client : client,
-        ttl : 260
-    }),
-    saveUninitialized : false,
-    resave : false
-}));
 
 //POST를 적용하기 위한 설정//
 router.use( bodyParser.json() );       // to support JSON-encoded bodies
