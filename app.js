@@ -38,6 +38,9 @@ app.use('/upload', fileuploadservice_router);
 var redissession_router = require('./redisdb/redisdbtest');
 app.use('/redis', redissession_router);
 
+var oracledbtest_router = require('./oracletest/oracledbtest');
+app.use('/oracle', oracledbtest_router);
+
 app.listen(3000, function(){
     console.log('connected');
 });
