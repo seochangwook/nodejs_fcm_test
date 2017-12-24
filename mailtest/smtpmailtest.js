@@ -2,6 +2,7 @@ var express = require('/usr/local/lib/node_modules/express');
 var bodyParser = require('/usr/local/lib/node_modules/body-parser');
 var async = require('/usr/local/lib/node_modules/async');
 var nodemailer = require('/usr/local/lib/node_modules/nodemailer');
+var mailConfig = require('/Users/macbook/Desktop/programmingfile/nodejs/test_project/mailtest/mailconfig');
 
 //라우터별로 분리하기 위해 express의 라우터 기능 사용//
 var router = express.Router();
@@ -14,10 +15,10 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 //Mail 계정설정//
 var transporter = nodemailer.createTransport({
-    service: 'naver',
+    service: mailConfig.mailservice,
     auth: {
-      user: 'scw0531@naver.com',
-      pass: 'tjckd246!ckd'
+      user: mailConfig.mailid,
+      pass: mailConfig.mailpassword
     }
 });
 
