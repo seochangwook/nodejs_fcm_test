@@ -41,6 +41,9 @@ app.use('/redis', redissession_router);
 var oracledbtest_router = require('./oracletest/oracledbtest');
 app.use('/oracle', oracledbtest_router);
 
+var mailtest_router = require('./mailtest/smtpmailtest');
+app.use('/mail', mailtest_router);
+
 app.listen(3000, function(){
     console.log('connected');
 });
