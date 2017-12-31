@@ -11,11 +11,19 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 })); 
 
+//passport auth check//
+var isAuthenticated = function (request, response, next) {
+    if (request.isAuthenticated())
+        return next();
+    response.send('not login... login please!!)');
+};
+
 //GET방식//
 router.get('/endpoint_get', function(request, response){
     var id = request.query.id;
 
-    console.log('session key value: ' + request.session.key);
+    console.log('session value: ' + request.session.passport.user);
+    console.log('session key value: ' + request.session.passport.user);
 
     response.send('id(get): '+id);
 });
@@ -34,6 +42,18 @@ router.post('/endpoint_post', function(request, response){
         response.send('id(post): '+id);
     }
 });
+
+router.post('/adminjob',isAuthenticated, function(request, response){
+    console.log('testvalue: ' + request.body.testvalue);
+
+    response.send('adminjob post');
+});
+///////////////////////
+function next(response){
+    console.log('admin job session: ' + request.session.passport.user);
+    console.log('post valie: ' + request.body.testvalue);
+    response.send('admin job success');
+}
 ///////////////////////
 function data_trans(response)
 {

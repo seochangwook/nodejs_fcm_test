@@ -2,6 +2,7 @@ var express = require('/usr/local/lib/node_modules/express');
 var redis   = require("/usr/local/lib/node_modules/redis");
 var session = require('/usr/local/lib/node_modules/express-session');
 var redisStore = require('/usr/local/lib/node_modules/connect-redis')(session);
+var passport = require('/usr/local/lib/node_modules/passport');
 
 var app = express();
 
@@ -18,6 +19,10 @@ app.use(session({
     saveUninitialized : false,
     resave : false
 }));
+
+//passport setting//
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Resource//
 //파일들이 있는 디렉터리(정적파일)를 사용하기 위해서 설정//
@@ -43,6 +48,9 @@ app.use('/oracle', oracledbtest_router);
 
 var mailtest_router = require('./mailtest/smtpmailtest');
 app.use('/mail', mailtest_router);
+
+var passport_router = require('./passport/passporttest');
+app.use('/auth', passport_router);
 
 app.listen(3000, function(){
     console.log('connected');
